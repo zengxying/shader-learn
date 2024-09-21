@@ -36,6 +36,11 @@ CCEffect %{
         lineWidth:                        {value: 0.1, editor: {slide: true, range: [0, 1.0], step: 0.001}}
         dissolveColor01:                  {value: [0.0,1.0,1.0,1.0], linear: true, editor: {type: color}}
         dissolveColor02:                  {value: [0.0,1.0,1.0,1.0], linear: true, editor: {type: color}}
+
+        # 消融偏移效果
+        offsetDirection:                  {value: [0.0,1.0,0.0, 0.0]}
+        offsetScale:                      {value: 0.0, editor: {slide: true, range: [0,1.0], step: 0.001}}
+        offsetThreshold:                  {value: 0.0, editor: {slide: true, range: [0,1.0], step: 0.001}}
     - &forward-add
       vert: standard-vs
       frag: standard-fs
@@ -138,6 +143,11 @@ CCProgram shared-ubos %{
 
     vec4 dissolveColor01;
     vec4 dissolveColor02;
+
+    vec4 offsetDirection;// * 消融偏移属性声明
+    float offsetScale;
+    float offsetThreshold;
+
     float lineWidth;
     float dissolveThreshold;
 
@@ -210,6 +220,14 @@ CCProgram surface-vertex %{
   #if CC_SURFACES_USE_SECOND_UV
     In.texCoord1 = In.texCoord1 * tilingOffset.xy + tilingOffset.zw;
   #endif
+  }
+
+
+  #define CC_SURFACES_VERTEX_MODIFY_LOCAL_POS  // * 通过自定义宏函数，修改localPosition数据   --- 这是顶点数据需要放到顶点数据的定义函数里面
+  vec3 SurfacesVertexModifyLocalPos(in SurfacesStandardVertexIntermediate In)
+  {
+      vec3 newPosition = In.position.xyz + In.normal.xyz * clamp((dissolveThreshold - offsetThreshold), 0.0, 1.0) * offsetScale;
+      return vec3(newPosition);
   }
 }%
 
@@ -374,7 +392,7 @@ CCProgram surface-fragment %{
     return pbr;
   }
 
-  #define CUSTOM_SURFACES_DISSOLVE_EFF
+  #define CUSTOM_SURFACES_DISSOLVE_EFF  // * 通过自定义宏函数 来使用消融函数
   void SurfacesFragmentDissolveEffect()
   {
       vec4 baseColor = albedo;
@@ -386,6 +404,9 @@ CCProgram surface-fragment %{
       vec4 dissolveColor = mix(dissolveColor02, dissolveColor01, t);
       baseColor.rgb = mix(baseColor.rgb, dissolveColor.rgb, t * step(0.001, dissolveThreshold));
   }
+
+
+  
 
   /*
   // definition of SurfacesMaterialData structure with corresponding shading-model

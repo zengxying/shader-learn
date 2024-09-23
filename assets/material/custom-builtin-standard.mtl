@@ -5,14 +5,12 @@
   "__editorExtras__": {},
   "_native": "",
   "_effectAsset": {
-    "__uuid__": "cb41de91-d375-4fac-b810-6ccdd25594b9",
+    "__uuid__": "e2054c89-5052-4d59-b251-ca72653f9a9f",
     "__expectedType__": "cc.EffectAsset"
   },
   "_techIdx": 0,
   "_defines": [
-    {
-      "USE_EFFECT": true
-    },
+    {},
     {},
     {},
     {},
@@ -21,10 +19,7 @@
   ],
   "_states": [
     {
-      "rasterizerState": {
-        "isDiscard": true,
-        "cullMode": 0
-      },
+      "rasterizerState": {},
       "depthStencilState": {},
       "blendState": {
         "targets": [
@@ -80,24 +75,11 @@
   ],
   "_props": [
     {
-      "noiseMap": {
-        "__uuid__": "406d8e5f-d561-4e95-bdb3-d72b99202e68@6c48a",
-        "__expectedType__": "cc.Texture2D"
-      },
-      "dissolveThreshold": 0.45,
-      "lineWidth": 0.235,
-      "dissolveColor01": {
+      "shadowColor": {
         "__type__": "cc.Color",
-        "r": 255,
-        "g": 0,
-        "b": 0,
-        "a": 255
-      },
-      "dissolveColor02": {
-        "__type__": "cc.Color",
-        "r": 255,
-        "g": 0,
-        "b": 0,
+        "r": 153,
+        "g": 28,
+        "b": 28,
         "a": 255
       }
     },

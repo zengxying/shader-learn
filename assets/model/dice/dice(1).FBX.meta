@@ -1,0 +1,126 @@
+{
+  "ver": "2.3.13",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "9b3454a3-36bd-463a-81e9-6eb708725148",
+  "files": [],
+  "subMetas": {
+    "92cef": {
+      "importer": "gltf-mesh",
+      "uuid": "9b3454a3-36bd-463a-81e9-6eb708725148@92cef",
+      "displayName": "",
+      "id": "92cef",
+      "name": "dice.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 44
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "6e70c": {
+      "importer": "texture",
+      "uuid": "9b3454a3-36bd-463a-81e9-6eb708725148@6e70c",
+      "displayName": "",
+      "id": "6e70c",
+      "name": "Map #1.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/model/dice/dice.jpg"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "407bc": {
+      "importer": "gltf-material",
+      "uuid": "9b3454a3-36bd-463a-81e9-6eb708725148@407bc",
+      "displayName": "",
+      "id": "407bc",
+      "name": "default.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f1b6b": {
+      "importer": "gltf-scene",
+      "uuid": "9b3454a3-36bd-463a-81e9-6eb708725148@f1b6b",
+      "displayName": "",
+      "id": "f1b6b",
+      "name": "dice(1).prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "Map #1",
+        "uri": "db://assets/model/dice/dice.jpg"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "9b3454a3-36bd-463a-81e9-6eb708725148@92cef"
+      ],
+      "skeletons": [],
+      "textures": [
+        "9b3454a3-36bd-463a-81e9-6eb708725148@6e70c"
+      ],
+      "materials": [
+        "9b3454a3-36bd-463a-81e9-6eb708725148@407bc"
+      ],
+      "scenes": [
+        "9b3454a3-36bd-463a-81e9-6eb708725148@f1b6b"
+      ]
+    }
+  }
+}

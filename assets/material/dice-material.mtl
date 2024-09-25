@@ -60,6 +60,15 @@
       "mainTexture": {
         "__uuid__": "103b372c-3796-48ff-a8d8-1442c419d576@6c48a",
         "__expectedType__": "cc.Texture2D"
+      },
+      "colorThreshold": 1,
+      "gradualThreshold": 1,
+      "gradualColor": {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 0,
+        "b": 0,
+        "a": 0
       }
     },
     {},

@@ -30,6 +30,11 @@ CCEffect %{
         metallic:              { value: 0.0, editor: { parent: HAS_EXPORTED_METALLIC, slide: true, range: [0, 1.0], step: 0.001 } }
         metallicMap:           { value: grey, editor: { parent: HAS_EXPORTED_METALLIC } }
         occlusionMap:          { value: white }
+
+        colorThreshold:      { value: 0.1, editor: {slide: true, range: [0, 1.0], step: 0.001, parent: USE_ALBEDO_MAP}}
+        gradualThreshold:      { value: 0.0, editor: {slide: true, range: [0, 1.0], step: 0.001, parent: USE_ALBEDO_MAP}}
+        gradualColor:          { value: [0.0, 0.0, 0.0, 0.0], editor: {type: color, parent: USE_ALBEDO_MAP}}
+        transformColor:          { value: [0.0, 0.0, 0.0, 0.0], editor: {type: color, parent: USE_ALBEDO_MAP}}
     - &forward-add
       vert: standard-vs
       frag: standard-fs
@@ -100,6 +105,10 @@ CCProgram shared-ubos %{
     vec4  diffuseColor;
     vec4  specularColor;
     vec4  emissive;
+    vec4  gradualColor;
+    vec4  transformColor;
+    float gradualThreshold;
+    float colorThreshold;
     float emissiveScale;
     float alphaThreshold;
     float shininessExponent;
@@ -318,6 +327,27 @@ CCProgram surface-fragment %{
       #else
         baseColor *= diffuseColor;
       #endif
+
+        // * 改变颜色值
+      # if USE_ALBEDO_MAP     
+        vec3 normal = normalize(FSInput_worldNormal).xyz; // 获取点的法向量
+        vec3 upDirection = vec3(0.0, 1.0, 0.0); // 定义上方向
+
+        // 判定点是否朝上
+        float dotProduct = dot(normal, upDirection);
+        vec3 equalColor = transformColor.rgb - baseColor.rgb;
+        float colorDistance = length(equalColor);
+        
+        bool isTransform = dotProduct > 0.0 && colorDistance <= colorThreshold;
+        // // && colorDistance <= gradualThreshold; // 如果点朝上，点积为正, 然后变换的颜色在阈值内
+        // 如果点朝上，点积为正, 然后变换的颜色在阈值内
+        if (isTransform) {
+            // 点朝上时的处理
+            // 如果颜色是黑色进行变换
+            baseColor = mix(baseColor, gradualColor, gradualThreshold);
+        }
+      # endif
+
       baseColor.rgb *= diffuseFactor;
 
       #if USE_TRANSPARENCY_MAP

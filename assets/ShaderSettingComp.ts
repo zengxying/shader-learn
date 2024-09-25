@@ -1,14 +1,14 @@
-import { _decorator, Component, director, game, Node } from 'cc';
-const { ccclass, property } = _decorator;
+// import { _decorator, Component, director, game, Node } from 'cc';
+// const { ccclass, property } = _decorator;
 
-@ccclass('ShaderSettingComp')
-export class ShaderSettingComp extends Component {
-    start() {
-    }
+// @ccclass('ShaderSettingComp')
+// export class ShaderSettingComp extends Component {
+//     start() {
+//     }
 
-    update(deltaTime: number) {
+//     update(deltaTime: number) {
 
-    }
-}
+//     }
+// }
 
 

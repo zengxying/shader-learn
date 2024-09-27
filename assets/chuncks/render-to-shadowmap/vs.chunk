@@ -3,6 +3,7 @@
 
 out highp vec2 v_clip_depth;
 
+
 void main()
 {
   SurfacesStandardVertexIntermediate In;
